@@ -1,0 +1,6 @@
+#!/bin/bash
+# zip nhanh bằng 7z – file + folder + multi select
+
+out="$(basename "${1%/}")"
+
+7z a -tzip "${out}.zip" "$@"

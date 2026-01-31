@@ -1,0 +1,25 @@
+#!/bin/bash
+STEP=500
+MIN=1500
+MAX=6500
+STATE="$HOME/.cache/redshift-temp"
+# nếu chưa có state → mặc định 4500K
+[ ! -f "$STATE" ] && echo 4500 >"$STATE"
+
+TEMP=$(cat "$STATE")
+
+case "$1" in up)
+  TEMP=$((TEMP - STEP)) # giảm số = vàng hơn
+  ;;
+down)
+  TEMP=$((TEMP + STEP)) # tăng số = xanh hơn
+  ;;
+esac
+# giới hạn
+[ "$TEMP" -gt "$MAX" ] && TEMP=$MAX
+[ "$TEMP" -lt "$MIN" ] && TEMP=$MIN
+echo "$TEMP" >"$STATE"
+# Kill redshift daemon nếu đang chạy
+killall redshift 2>/dev/null
+# Áp dụng nhiệt độ mới
+redshift -O "$TEMP" -P

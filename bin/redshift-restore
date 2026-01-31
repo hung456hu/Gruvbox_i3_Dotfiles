@@ -1,0 +1,16 @@
+#!/bin/bash
+
+STATE="$HOME/.cache/redshift-temp"
+
+# Nếu chưa có state → mặc định 4500K
+if [ ! -f "$STATE" ]; then
+    echo 4500 >"$STATE"
+fi
+
+TEMP=$(cat "$STATE")
+
+# Kill redshift daemon nếu đang chạy
+killall redshift 2>/dev/null
+
+# Áp dụng nhiệt độ đã lưu
+redshift -O "$TEMP" -P

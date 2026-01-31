@@ -1,0 +1,25 @@
+#!/bin/bash
+# set-wall: đặt wallpaper từ ~/Pictures
+
+IMG="$1"
+
+# Kiểm tra có tên file không
+if [ -z "$1" ]; then
+  echo "Usage: set-wall <tên_file>"
+  exit 1
+fi
+
+# Kiểm tra file có tồn tại không
+if [ ! -f "$IMG" ]; then
+  echo "File $IMG không tồn tại!"
+  exit 1
+fi
+
+# Đặt wallpaper bằng feh
+feh --bg-fill "$IMG"
+
+# Lưu lệnh để chạy lại sau
+echo "feh --bg-fill \"$IMG\"" >"$HOME/.config/i3/wallpaper.sh"
+chmod +x "$HOME/.config/i3/wallpaper.sh"
+
+echo "Wallpaper đã được đặt: $IMG"
