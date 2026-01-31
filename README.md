@@ -5,17 +5,7 @@ Install ZSH
 Set zsh as default
 
     chsh -s $(which zsh)
-in gnome terminal
 
-    profile custom command
-
-zsh default themes
-
-https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-
-edit .zshrc
-
-ZSH_THEME="jonathan"
 Install ohmyzsh
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -28,25 +18,18 @@ Zsh Must-Have Plugin
 edit .zshrc to include plugins
 
     plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-plugins include with ohmyzsh
 
-https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 Nerd Font
 
-https://www.nerdfonts.com/
+    sudo pacman -S ttf-jetbrains-mono-nerd
 
-https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraMono
-
-download and install firamono for linux
 Install Powerlevel 10k
 
     git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
 edit .zshrc
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-POWERLEVEL9K_MODE="nerdfont-complete"
+    ZSH_THEME="powerlevel10k/powerlevel10k"
 
 Cai dat package 
 
