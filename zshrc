@@ -121,6 +121,8 @@ alias d="dua interactive /"
 alias ls="eza --no-filesize --long --color=always --icons=always --no-user"
 alias t="tree -L 3 -a -I '.git' --charset X "
 alias dt="tree -L 3 -a -d -I '.git' --charset X "
+alias bat-save='echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+alias bat-full='echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 
 # ------------FZF--------------
 # Set up fzf key bindings and fuzzy completion
