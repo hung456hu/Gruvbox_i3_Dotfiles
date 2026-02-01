@@ -4,6 +4,7 @@ base
 base-devel
 bat
 brightnessctl
+cmatrix
 discord
 dmenu
 dua-cli
@@ -26,6 +27,7 @@ gst-plugin-pipewire
 htop
 i3-wm
 i3blocks
+i3lock-color
 iwd
 libpulse
 linux
@@ -46,6 +48,7 @@ sof-firmware
 sudo
 sxiv
 terminus-font
+tlp
 tree
 ttf-jetbrains-mono-nerd
 ueberzugpp
@@ -102,6 +105,7 @@ xorg-xwayland
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+xss-lock
 yay
 yay-debug
 zoxide
