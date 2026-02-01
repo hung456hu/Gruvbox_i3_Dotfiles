@@ -35,6 +35,12 @@ Cai dat package
 
     sudo pacman -S --needed - < pkglist.txt
 
+Khoi dong ly display manager
+
+    sudo systemctl enable ly@tty1.service
+    sudo systemctl disable getty@tty1.service
+    sudo systemctl start ly@tty1.service
+
 Cai dat yay
 
     sudo pacman -S --needed base-devel git
