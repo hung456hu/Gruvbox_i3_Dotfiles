@@ -26,7 +26,6 @@ gst-plugin-pipewire
 htop
 i3-wm
 i3blocks
-i3lock-color
 iwd
 libpulse
 linux
