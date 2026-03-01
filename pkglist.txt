@@ -22,7 +22,6 @@ feh
 firefox
 fzf
 git
-grub
 gst-plugin-pipewire
 htop
 i3-wm
@@ -51,7 +50,6 @@ terminus-font
 tlp
 tree
 ttf-jetbrains-mono-nerd
-ueberzugpp
 wireplumber
 xclip
 xdotool
@@ -84,7 +82,6 @@ xorg-xdriinfo
 xorg-xev
 xorg-xgamma
 xorg-xhost
-xorg-xinit
 xorg-xinput
 xorg-xkbcomp
 xorg-xkbevd
@@ -106,8 +103,6 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xss-lock
-yay
-yay-debug
 zoxide
 zram-generator
 zsh
