@@ -17,7 +17,7 @@ font pango:JetBrainsMono Nerd Font 14
 exec --no-startup-id picom
 exec --no-startup-id fcitx5
 exec --no-startup-id dunst
-exec_always --no-startup-id ~/.bin/redshift-restore
+exec_always --no-startup-id /usr/local/bin/redshift-restore
 exec_always --no-startup-id ~/.config/i3/wallpaper.sh
 exec_always --no-startup-id killall polybar 
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
@@ -50,8 +50,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id ~/.bin/redshift-temp up
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id ~/.bin/redshift-temp down
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id /usr/local/bin/redshift-temp up
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id /usr/local/bin/redshift-temp down
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
