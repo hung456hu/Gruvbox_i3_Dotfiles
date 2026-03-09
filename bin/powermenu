@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# sudo visudo -f /etc/sudoers.d/powermenu
+# hung ALL=(ALL) NOPASSWD: /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/systemctl suspend
+
+# List các lựa chọn
+OPTIONS="Shutdown\nReboot\nSuspend\nLogout"
+
+# Hiển thị dmenu
+CHOICE=$(echo -e $OPTIONS | dmenu -i -fn "JetBrainsMono Nerd Font-14" \
+  -nb "#282828" -nf "#ebdbb2" -sb "#458588" -sf "#ffffff" -p "Power Menu:")
+
+# Thực hiện hành động dựa trên lựa chọn
+case "$CHOICE" in
+  Shutdown)
+    sudo systemctl poweroff
+    ;;
+  Reboot)
+    sudo systemctl reboot
+    ;;
+  Suspend)
+    betterlockscreen -l & sleep 0.1 && sudo systemctl suspend   
+    ;;
+  Logout)
+    i3-msg exit
+    ;;
+esac
