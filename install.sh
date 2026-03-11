@@ -47,7 +47,7 @@ info "Thư mục dotfiles: ${DOTFILES_DIR}"
 # ============================================================
 # BƯỚC 1 — Cài đặt package từ pacman
 # ============================================================
-step "Bước 1/7 — Cài đặt packages (pacman)"
+step "Bước 1/8 — Cài đặt packages (pacman)"
 
 if [[ -f "${DOTFILES_DIR}/pkglist.txt" ]]; then
     info "Đang cài đặt packages từ pkglist.txt..."
@@ -58,10 +58,12 @@ else
     warn "Không tìm thấy pkglist.txt, bỏ qua bước này."
 fi
 
+
+
 # ============================================================
 # BƯỚC 2 — Cài đặt yay (AUR helper)
 # ============================================================
-step "Bước 2/7 — Cài đặt yay (AUR helper)"
+step "Bước 2/8 — Cài đặt yay (AUR helper)"
 
 if command -v yay &>/dev/null; then
     success "yay đã được cài đặt, bỏ qua."
@@ -79,7 +81,7 @@ fi
 # ============================================================
 # BƯỚC 3 — Cài đặt package AUR
 # ============================================================
-step "Bước 3/7 — Cài đặt AUR packages"
+step "Bước 3/8 — Cài đặt AUR packages"
 
 if [[ -f "${DOTFILES_DIR}/aurlist.txt" ]]; then
     info "Đang cài đặt AUR packages từ aurlist.txt..."
@@ -93,9 +95,18 @@ fi
 # ============================================================
 # BƯỚC 4 — Copy dotfiles vào đúng vị trí
 # ============================================================
-step "Bước 4/7 — Triển khai dotfiles"
+step "Bước 4/8 — Triển khai dotfiles"
 
-# 4a. bin/ → /usr/local/bin/
+# 4a. vconsole.conf → /etc/vconsole.conf (terminus-font cho ly)
+if [[ -f "${DOTFILES_DIR}/vconsole.conf" ]]; then
+    info "Đang copy vconsole.conf → /etc/vconsole.conf ..."
+    sudo cp "${DOTFILES_DIR}/vconsole.conf" /etc/vconsole.conf
+    success "Đã copy vconsole.conf"
+else
+    warn "Không tìm thấy vconsole.conf, bỏ qua."
+fi
+
+# 4b. bin/ → /usr/local/bin/
 if [[ -d "${DOTFILES_DIR}/bin" ]]; then
     info "Đang copy bin/ → /usr/local/bin/ ..."
     sudo cp -r "${DOTFILES_DIR}/bin/." /usr/local/bin/
@@ -105,7 +116,7 @@ else
     warn "Không tìm thấy thư mục bin/, bỏ qua."
 fi
 
-# 4b. config/ → ~/.config/
+# 4c. config/ → ~/.config/
 if [[ -d "${DOTFILES_DIR}/config" ]]; then
     info "Đang copy config/ → ~/.config/ ..."
     mkdir -p "${HOME}/.config"
@@ -115,7 +126,7 @@ else
     warn "Không tìm thấy thư mục config/, bỏ qua."
 fi
 
-# 4c. 40-touchpad.conf → /etc/X11/xorg.conf.d/
+# 4d. 40-touchpad.conf → /etc/X11/xorg.conf.d/
 if [[ -f "${DOTFILES_DIR}/40-touchpad.conf" ]]; then
     info "Đang copy 40-touchpad.conf → /etc/X11/xorg.conf.d/ ..."
     sudo mkdir -p /etc/X11/xorg.conf.d/
@@ -125,7 +136,7 @@ else
     warn "Không tìm thấy 40-touchpad.conf, bỏ qua."
 fi
 
-# 4d. zshrc → ~/.zshrc
+# 4e. zshrc → ~/.zshrc
 if [[ -f "${DOTFILES_DIR}/zshrc" ]]; then
     info "Đang copy zshrc → ~/.zshrc ..."
     cp "${DOTFILES_DIR}/zshrc" "${HOME}/.zshrc"
@@ -134,7 +145,7 @@ else
     warn "Không tìm thấy zshrc, bỏ qua."
 fi
 
-# 4e. xprofile → ~/.xprofile
+# 4f. xprofile → ~/.xprofile
 if [[ -f "${DOTFILES_DIR}/xprofile" ]]; then
     info "Đang copy xprofile → ~/.xprofile ..."
     cp "${DOTFILES_DIR}/xprofile" "${HOME}/.xprofile"
@@ -146,7 +157,7 @@ fi
 # ============================================================
 # BƯỚC 5 — Khởi động ly display manager
 # ============================================================
-step "Bước 5/7 — Kích hoạt ly display manager"
+step "Bước 5/8 — Kích hoạt ly display manager"
 
 if systemctl list-unit-files | grep -q "ly"; then
     info "Đang enable ly display manager..."
@@ -159,7 +170,7 @@ fi
 # ============================================================
 # BƯỚC 6 — Cài đặt zsh + Oh My Zsh + plugins + theme
 # ============================================================
-step "Bước 6/7 — Cài đặt zsh, Oh My Zsh, plugins, Powerlevel10k"
+step "Bước 6/8 — Cài đặt zsh, Oh My Zsh, plugins, Powerlevel10k"
 
 # Đặt zsh làm shell mặc định
 if [[ "$SHELL" != "$(which zsh)" ]]; then
@@ -222,13 +233,23 @@ sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd \
 # BƯỚC 7 — Copy lại .zshrc sau khi Oh My Zsh cài xong
 #          (vì OMZ có thể ghi đè .zshrc)
 # ============================================================
-step "Bước 7/7 — Áp dụng lại .zshrc dotfile"
+step "Bước 7/8 — Áp dụng lại .zshrc dotfile"
 
 if [[ -f "${DOTFILES_DIR}/zshrc" ]]; then
     info "Áp dụng lại zshrc dotfile (ghi đè bản OMZ mặc định)..."
     cp "${DOTFILES_DIR}/zshrc" "${HOME}/.zshrc"
     success "Đã áp dụng .zshrc"
 fi
+
+# ============================================================
+# BƯỚC 8 — Rebuild initramfs để vconsole có hiệu lực
+# ============================================================
+step "Bước 8/8 — Rebuild initramfs (áp dụng terminus-font cho ly)"
+
+info "Đang chạy mkinitcpio -P ..."
+sudo mkinitcpio -P \
+    && success "Rebuild initramfs thành công!" \
+    || warn "mkinitcpio gặp lỗi, bạn có thể chạy thủ công: sudo mkinitcpio -P"
 
 # ============================================================
 # HOÀN TẤT
