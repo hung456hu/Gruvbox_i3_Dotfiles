@@ -14,10 +14,6 @@ Zsh Must-Have Plugin
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
-edit .zshrc to include plugins
-
-    plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-
 Nerd Font
 
     sudo pacman -S ttf-jetbrains-mono-nerd
@@ -25,10 +21,6 @@ Nerd Font
 Install Powerlevel 10k
 
     git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
-edit .zshrc
-
-    ZSH_THEME="powerlevel10k/powerlevel10k"
 
 Cai dat package 
 
