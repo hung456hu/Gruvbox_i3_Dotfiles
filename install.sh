@@ -47,7 +47,7 @@ info "Thư mục dotfiles: ${DOTFILES_DIR}"
 # ============================================================
 # BƯỚC 1 — Cài đặt package từ pacman
 # ============================================================
-step "Bước 1/8 — Cài đặt packages (pacman)"
+step "Bước 1/9 — Cài đặt packages (pacman)"
 
 if [[ -f "${DOTFILES_DIR}/pkglist.txt" ]]; then
     info "Đang cài đặt packages từ pkglist.txt..."
@@ -63,7 +63,7 @@ fi
 # ============================================================
 # BƯỚC 2 — Cài đặt yay (AUR helper)
 # ============================================================
-step "Bước 2/8 — Cài đặt yay (AUR helper)"
+step "Bước 2/9 — Cài đặt yay (AUR helper)"
 
 if command -v yay &>/dev/null; then
     success "yay đã được cài đặt, bỏ qua."
@@ -81,7 +81,7 @@ fi
 # ============================================================
 # BƯỚC 3 — Cài đặt package AUR
 # ============================================================
-step "Bước 3/8 — Cài đặt AUR packages"
+step "Bước 3/9 — Cài đặt AUR packages"
 
 if [[ -f "${DOTFILES_DIR}/aurlist.txt" ]]; then
     info "Đang cài đặt AUR packages từ aurlist.txt..."
@@ -95,7 +95,7 @@ fi
 # ============================================================
 # BƯỚC 4 — Copy dotfiles vào đúng vị trí
 # ============================================================
-step "Bước 4/8 — Triển khai dotfiles"
+step "Bước 4/9 — Triển khai dotfiles"
 
 # 4a. vconsole.conf → /etc/vconsole.conf (terminus-font cho ly)
 if [[ -f "${DOTFILES_DIR}/vconsole.conf" ]]; then
@@ -162,7 +162,7 @@ fi
 # ============================================================
 # BƯỚC 5 — Khởi động ly display manager
 # ============================================================
-step "Bước 5/8 — Kích hoạt ly display manager"
+step "Bước 5/9 — Kích hoạt ly display manager"
 
 if systemctl list-unit-files | grep -q "ly"; then
     info "Đang enable ly display manager..."
@@ -175,7 +175,7 @@ fi
 # ============================================================
 # BƯỚC 6 — Cài đặt zsh + Oh My Zsh + plugins + theme
 # ============================================================
-step "Bước 6/8 — Cài đặt zsh, Oh My Zsh, plugins, Powerlevel10k"
+step "Bước 6/9 — Cài đặt zsh, Oh My Zsh, plugins, Powerlevel10k"
 
 # Đặt zsh làm shell mặc định
 if [[ "$SHELL" != "$(which zsh)" ]]; then
@@ -238,7 +238,7 @@ sudo pacman -S --needed --noconfirm ttf-jetbrains-mono-nerd \
 # BƯỚC 7 — Copy lại .zshrc sau khi Oh My Zsh cài xong
 #          (vì OMZ có thể ghi đè .zshrc)
 # ============================================================
-step "Bước 7/8 — Áp dụng lại .zshrc dotfile"
+step "Bước 7/9 — Áp dụng lại .zshrc dotfile"
 
 if [[ -f "${DOTFILES_DIR}/zshrc" ]]; then
     info "Áp dụng lại zshrc dotfile (ghi đè bản OMZ mặc định)..."
@@ -247,9 +247,23 @@ if [[ -f "${DOTFILES_DIR}/zshrc" ]]; then
 fi
 
 # ============================================================
-# BƯỚC 8 — Rebuild initramfs để vconsole có hiệu lực
+# BƯỚC 8 — Cấp quyền reboot/suspend/poweroff không cần password
 # ============================================================
-step "Bước 8/8 — Rebuild initramfs (áp dụng terminus-font cho ly)"
+step "Bước 8/9 — Cấp quyền powermenu (sudoers.d)"
+
+SUDOERS_FILE="/etc/sudoers.d/powermenu"
+CURRENT_USER="${USER}"
+
+info "Đang tạo ${SUDOERS_FILE} cho user '${CURRENT_USER}'..."
+echo "${CURRENT_USER} ALL=(ALL) NOPASSWD: /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/systemctl suspend" \
+    | sudo tee "${SUDOERS_FILE}" > /dev/null
+sudo chmod 0440 "${SUDOERS_FILE}"
+success "Đã tạo ${SUDOERS_FILE}"
+
+# ============================================================
+# BƯỚC 9 — Rebuild initramfs để vconsole có hiệu lực
+# ============================================================
+step "Bước 9/9 — Rebuild initramfs (áp dụng terminus-font cho ly)"
 
 info "Đang chạy mkinitcpio -P ..."
 sudo mkinitcpio -P \
