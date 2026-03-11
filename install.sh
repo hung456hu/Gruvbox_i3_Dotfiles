@@ -122,6 +122,11 @@ if [[ -d "${DOTFILES_DIR}/config" ]]; then
     mkdir -p "${HOME}/.config"
     cp -r "${DOTFILES_DIR}/config/." "${HOME}/.config/"
     success "Đã copy config/ vào ~/.config/"
+    info "Đang chmod +x các script..."
+    chmod +x "${HOME}/.config/i3/wallpaper.sh"
+    chmod +x "${HOME}/.config/polybar/launch_polybar.sh"
+    chmod +x "${HOME}/.config/polybar/mic.sh"
+    success "Đã chmod +x wallpaper.sh, launch_polybar.sh, mic.sh"
 else
     warn "Không tìm thấy thư mục config/, bỏ qua."
 fi
