@@ -1,7 +1,23 @@
 # Gruvbox_i3_Dotfiles
-Install ZSH
+Cai dat package 
 
-    sudo pacman -S zsh
+    sudo pacman -S --needed - < pkglist.txt
+
+Cai dat yay
+
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+
+Cai dat package aur 
+
+    yay -S --needed - < aurlist.txt
+
+Khoi dong ly display manager
+
+    sudo systemctl enable ly@tty1.service
+    sudo systemctl start ly@tty1.service
+
 Set zsh as default
 
     chsh -s $(which zsh)
@@ -9,6 +25,7 @@ Set zsh as default
 Install ohmyzsh
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    
 Zsh Must-Have Plugin
 
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
@@ -22,23 +39,4 @@ Install Powerlevel 10k
 
     git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
-Cai dat package 
 
-    sudo pacman -S --needed - < pkglist.txt
-
-Khoi dong ly display manager
-
-    sudo systemctl enable ly@tty1.service
-    sudo systemctl disable getty@tty1.service
-    sudo systemctl start ly@tty1.service
-
-Cai dat yay
-
-    sudo pacman -S --needed base-devel git
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-
-Cai dat package aur 
-
-    yay -S --needed - < aurlist.txt
