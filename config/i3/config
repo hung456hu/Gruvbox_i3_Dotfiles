@@ -69,7 +69,7 @@ bindsym $mod+Shift+q exec --no-startup-id ~/.config/i3/kill_focused.sh
 
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "JetBrainsMono Nerd Font-14" -nb "#282828" -nf "#ebdbb2" -sb "#458588" -sf "#ffffff"'
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -fn "JetBrainsMono Nerd Font-14" -nb "#282828" -nf "#ebdbb2" -sb "#458588" -sf "#ffffff" -p "Open App:"'
 bindsym $mod+x exec --no-startup-id /usr/local/bin/powermenu
 
 # A more modern dmenu replacement is rofi:
