@@ -19,7 +19,7 @@ case "$CHOICE" in
     sudo systemctl reboot
     ;;
   Suspend)
-    betterlockscreen -l & sleep 0.1 && sudo systemctl suspend   
+    betterlockscreen -l & sleep 0.3 && sudo systemctl suspend   
     ;;
   Logout)
     i3-msg exit
