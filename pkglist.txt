@@ -22,6 +22,7 @@ feh
 firefox
 fzf
 git
+grub
 gst-plugin-pipewire
 htop
 i3-wm
@@ -35,6 +36,7 @@ maim
 neovim
 noto-fonts-cjk
 noto-fonts-emoji
+nsxiv
 picom
 pipewire
 pipewire-alsa
