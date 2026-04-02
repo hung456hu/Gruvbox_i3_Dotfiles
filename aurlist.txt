@@ -2,4 +2,3 @@ i3lock-color
 yay
 yay-debug
 betterlockscreen
-auto-cpufreq
