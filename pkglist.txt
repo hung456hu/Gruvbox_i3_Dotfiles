@@ -110,3 +110,4 @@ zsh
 7zip
 mpv
 exfatprogs
+dosfstools
