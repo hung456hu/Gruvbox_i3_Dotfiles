@@ -35,6 +35,20 @@ cat << 'EOF'
 EOF
 echo -e "${NC}"
 
+# ---------- Xác nhận cài đặt ----------
+echo -e "${YELLOW}${BOLD}   Script này sẽ cài đặt packages, copy dotfiles và thay đổi cấu hình hệ thống.${NC}"
+echo -e "${YELLOW}${BOLD}   Bạn có chắc muốn tiếp tục không?${NC} [y/N] \c"
+read -r CONFIRM
+case "$CONFIRM" in
+    [yY][eE][sS]|[yY])
+        echo -e "${GREEN}${BOLD}[OK]${NC}   Bắt đầu cài đặt...\n"
+        ;;
+    *)
+        echo -e "${YELLOW}${BOLD}[WARN]${NC} Đã hủy cài đặt. Không có thay đổi nào được thực hiện."
+        exit 0
+        ;;
+esac
+
 # ---------- Kiểm tra chạy với user thường (không phải root) ----------
 if [[ "$EUID" -eq 0 ]]; then
     error "Không chạy script này bằng root! Hãy chạy với user thường (có quyền sudo)."
