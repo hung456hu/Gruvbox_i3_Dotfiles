@@ -118,7 +118,7 @@ eval "$(fzf --zsh)"
 
 alias v="nvim"
 alias d="dua interactive /"
-alias ls="eza --no-filesize --long --color=always --icons=always --no-user"
+alias ls="eza -a --no-filesize --long --color=always --icons=always --no-user"
 alias t="tree -L 3 -a -I '.git' --charset X "
 alias dt="tree -L 3 -a -d -I '.git' --charset X "
 alias pic="nsxiv"
