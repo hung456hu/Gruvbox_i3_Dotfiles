@@ -107,3 +107,4 @@ xss-lock
 zoxide
 zram-generator
 zsh
+7zip
