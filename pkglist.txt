@@ -108,3 +108,4 @@ zoxide
 zram-generator
 zsh
 7zip
+mpv
